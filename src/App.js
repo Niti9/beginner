@@ -1,11 +1,14 @@
 import Video from './components/video.js'
-// import video from './components/video.css'
 function App() {
   return (
-    //<></> this are called fragments
+
     <>
       <div>Hello</div>
-      <Video></Video>
+      {/* attributes in javascript used here as "PROPS" */}
+
+      {/* same component can be pass or use multiple times */}
+      <Video title = "React Js tutorial"></Video>
+      <Video title = "Node Js tutorial"></Video>
     </>
   )
 }
