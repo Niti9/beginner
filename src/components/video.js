@@ -6,7 +6,7 @@ function Video() {
         <>
             <img src="https://picsum.photos/id/237/200/300" alt="Katherine Johnson" />
             
-            {/* inline css  */}
+            {/* inline css  or double curly braces used for CSS */}
             <div className={bg} style={{ backgroundColor: 'red' }} >{topic}</div>
         </>
     )
