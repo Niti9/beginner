@@ -7,8 +7,8 @@ function App() {
       {/* attributes in javascript used here as "PROPS" */}
 
       {/* same component can be pass or use multiple times */}
-      <Video title = "React Js tutorial"></Video>
-      <Video title = "Node Js tutorial"></Video>
+      <Video bgColor="Red" title="React Js tutorial"></Video>
+      <Video bgColor="Green" title="Node Js tutorial"></Video>
     </>
   )
 }
