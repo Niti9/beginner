@@ -1,8 +1,11 @@
-function App(){
-  return <div>Hello</div>
+import Video from './components/video.js'
+function App() {
+  return (
+    <>
+      <div>Hello</div>
+      <Video></Video>
+    </>
+  )
 }
 
-function Second(){
-  return <div> How are you</div>
-}
-export  {App, Second};
+export default App;
