@@ -1,7 +1,18 @@
 import './PlayButton.css'
 
-export default function PlayButton () {
-    // EVENT HANDLER FUNCTION 
-    // iss function se console mein play ek hi baar print hoga jab click karenge
-    return <button onClick={()=>console.log('play')}>Play</button>
+function PlayButton() {
+
+    function handleClick() {
+        console.log('play');
+    }
+
+    return (
+        //hum handleClick() nahi likhenge
+        //instead hum sirf handleClick likhenge kyunki isse function definition apne aap 
+        // chalegi means play two times print nahi hoga
+        <button onClick={handleClick}>Play</button>
+    )
 }
+
+
+export default PlayButton;
