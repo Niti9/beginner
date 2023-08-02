@@ -8,7 +8,7 @@ function App() {
   return (
 
 
-    <div className='App'>
+    <div className='App' onClick={()=>console.log('App')}>
       <div>Video</div>
       {
         //Higher order function
@@ -24,13 +24,17 @@ function App() {
             channel={video.channel}
             verified={video.verified}
             id={video.id}
-          ></Video>)
+          >
+            <PlayButton  
+              onPlay={() => console.log('Playing..',video.title)}
+              onPause={() => console.log('Paused..',video.title)}
+              > 
+              {video.title}
+              </PlayButton>
+          </Video>)
       }
 
       <div style={{ clear: 'both' }} >
-        <PlayButton message="play-msg" onPlay={() => console.log('Play')} 
-        onPause={()=>console.log('Pause')}> Play</PlayButton>
-        {/* <PlayButton message="pause-msg" onClick={() => alert('Pause')}>Pause</PlayButton> */}
       </div>
     </div>
   );
