@@ -1,34 +1,8 @@
 import Video from './components/video.js'
 import './App.css';
+import videos from './data/data.js';
+
 function App() {
-
-  // creating object 
-  let videos = [{
-    
-    title: "React Js tutorial",
-    views: "999k",
-    time: "1 year ago",
-    channel: 'Coder Dost',
-    verified: true,
-    id:1,
-
-  },
-  {
-    title: "Node Js tutorial",
-    views: "100k",
-    time: "1 month ago",
-    channel: 'Abhishek Rathore',
-    verified: false,
-    id:2,
-  },
-  {
-    title: "MongoDB tutorial",
-    views: "140k",
-    time: "5 month ago",
-    verified: true,
-    id:3,
-
-  }]
 
   return (
 
@@ -42,6 +16,7 @@ function App() {
         //means ek ek karke object ke har ek title,views wagarh run honge
         videos.map(video =>
           <Video
+            key={video.id} // this is unique means to remove consol error of ' unique key  prop'
             title={video.title}
             views={video.views}
             time={video.time}
