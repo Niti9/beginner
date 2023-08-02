@@ -1,6 +1,7 @@
 import Video from './components/video.js'
 import './App.css';
 import videos from './data/data.js';
+import PlayButton from './components/PlayButton.js'
 
 function App() {
 
@@ -25,6 +26,10 @@ function App() {
             id={video.id}
           ></Video>)
       }
+
+      <div style={{ clear: 'both' }} >
+        <PlayButton></PlayButton>
+      </div>
     </div>
   );
 }
