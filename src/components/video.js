@@ -13,8 +13,9 @@ function Video({ title, channel = "CODER_DOST", views, time, verified }) {
                     <img src="https://picsum.photos/id/3/5000/3333" alt="Katherine Johnson" />
                 </div>
                 <div className='title'>{title}</div>
-                {/* ternary operator */}
-                <div className='channel'>{channel} {verified ? '✅': null} </div>
+                {/* short circuiting = yahan agar value or condition false hai to wo aage check 
+                hi nahi hogi aur 0 aur 1 ke case mein value alag kaam karegi*/}
+                <div className='channel'>{channel} {verified && '✅'} </div>
                 
                     
 
