@@ -15,8 +15,7 @@ function Video({ title, channel = "CODER_DOST", views, time, verified }) {
                 <div className='title'>{title}</div>
 
                 {/* ternary operator */}
-                {verified ? <div className='channel'>{channel} ✅ </div>
-                    : <div className='channel'>{channel} </div>}
+                {verified ? '✅' : null}
 
                 <div className='views'>{views}
                     <span>.</span> {time}
