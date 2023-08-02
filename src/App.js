@@ -28,8 +28,8 @@ function App() {
       }
 
       <div style={{ clear: 'both' }} >
-        <PlayButton message ="play-msg">Play</PlayButton>
-        <PlayButton message="pause-msg">Pause</PlayButton>
+        <PlayButton message="play-msg" onClick={() => console.log('Play')}>Play</PlayButton>
+        <PlayButton message="pause-msg" onClick={() => alert('Pause')}>Pause</PlayButton>
       </div>
     </div>
   );

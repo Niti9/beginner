@@ -1,10 +1,10 @@
 import './PlayButton.css'
 
 //using children prop it help to take message or icon name passing as prop
-function PlayButton({message,children}) {
+function PlayButton({message,children,onClick}) {
 
     function handleClick() {
-        console.log(message); //message prop
+        onClick();
     }
 
     return (
