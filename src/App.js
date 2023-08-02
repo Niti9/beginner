@@ -8,6 +8,7 @@ function App() {
     views: "999k",
     time: "1 year ago",
     channel: 'Coder Dost',
+    verified: true,
 
   }
   return (
@@ -22,6 +23,7 @@ function App() {
           views="100k"
           time="1 month ago"
           channel='Abhishek Rathore'
+          verified={true}
           
         >
 
@@ -29,6 +31,7 @@ function App() {
         <Video title="MongoDB tutorial"
           views="140k"
           time="5 month ago"
+          verified={false}
          >
 
         </Video>
