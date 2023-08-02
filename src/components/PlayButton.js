@@ -1,16 +1,13 @@
 import './PlayButton.css'
 
-function PlayButton() {
+function PlayButton({message,name}) {
 
     function handleClick() {
-        console.log('play');
+        console.log(message); //message prop
     }
 
     return (
-        //hum handleClick() nahi likhenge
-        //instead hum sirf handleClick likhenge kyunki isse function definition apne aap 
-        // chalegi means play two times print nahi hoga
-        <button onClick={handleClick}>Play</button>
+        <button onClick={handleClick}>{name}</button>
     )
 }
 
