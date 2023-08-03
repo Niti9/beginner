@@ -1,9 +1,14 @@
+import {useState} from 'react';
+
 function Counter(){
-    let number = 0;
+
+    //number is state , and setNumber is like setter 
+    const [number, setNumber] = useState(0);
 
     function handleClick(e){
         e.stopPropagation();
-        number++;
+        
+        setNumber(number+1);
         console.log(number);
     }
     return(
