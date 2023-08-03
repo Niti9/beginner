@@ -1,22 +1,23 @@
 import './PlayButton.css'
+import { useState } from 'react';
 
 function PlayButton({children,onPlay, onPause  }) {
 
-    let playing = false;  
+    const[playing, setPlaying] =  useState(false);  
     function handleClick(e) {
+
         //event bubbling
-        e.stopPropagation(); //isse app console mein show nahi hoga
-        //multiple functionalities mein uppar waali ko hata dega
+        e.stopPropagation(); //isse app likh kar console mein show nahi hoga 
         if(playing) 
             onPause();
         else 
             onPlay();
 
-        playing = !playing;  //condition to change false into true or play into pause in console
+        setPlaying(!playing);  //condition to change false into true or play into pause in console
     }
     return (
         // play , pause sign we make ternary operator 
-        <button onClick={handleClick} >{children}: {playing ? '>':'||'}</button>
+        <button onClick={handleClick} >{children}: {playing ? '⏸️':'▶️'}</button>
     )
 }
 
