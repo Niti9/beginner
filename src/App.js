@@ -2,7 +2,7 @@ import Video from './components/video.js'
 import './App.css';
 import videos from './data/data.js';
 import PlayButton from './components/PlayButton.js'
-
+import Counter from './components/Couter.js'
 function App() {
 
   return (
@@ -33,6 +33,7 @@ function App() {
               </PlayButton>
           </Video>)
       }
+          <Counter></Counter>
 
       <div style={{ clear: 'both' }} >
       </div>
