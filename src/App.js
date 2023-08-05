@@ -2,8 +2,8 @@ import Video from './components/video.js'
 import './App.css';
 import videoDB from './data/data.js';
 import PlayButton from './components/PlayButton.js'
-import Counter from './components/Couter.js'
 import { useState } from 'react';
+import AddVideo from './components/AddVideo.js';
 function App() {
 
   console.log('render App');
@@ -13,20 +13,7 @@ function App() {
 
 
     <div className='App' onClick={() => console.log('App')}>
-      <div>
-        <button onClick={() => { 
-          //here we setVideos (setter) by copy of videos (using spread Operator) 
-          setVideos([...videos, {
-            id: videos.length + 1,
-            title: 'Demo Js Tutorial',
-            name: '1M',
-            time: '1 month ago',
-            channel: 'Coder Dost',
-            verified: true
-          }]);
-        }}> Add Video </button>
-      </div>
-
+      <AddVideo></AddVideo>
       {
         videos.map(video =>
           <Video
@@ -46,10 +33,6 @@ function App() {
             </PlayButton>
           </Video>)
       }
-      <Counter></Counter>
-
-      <div style={{ clear: 'both' }} >
-      </div>
     </div>
   );
 }
