@@ -3,24 +3,27 @@ import './AddVideo.css'
 
 function AddVideo({ addVideos }) {
 
-    /**  yahan title aur views uncontrolled 
-     * means undefined rahenge jab tak
-     *  hum unhe controlled nahi kar lenge
-     *  uske liye hum title aur views mein '  ' space dekar 
-     * unhe null karenge */
-    const [video, setVideos] = useState({
+
+    /** creating variable isse jab hum new video add karenge
+     * to jo title aur views add karne waale column hai wo khaali 
+     * ho jaayenge kyunki useState(initialState) mein chala jaayega*/
+    const initialState = {
         time: '1 month ago',
         channel: 'Coder Dost',
         verified: true,
         title: '',
         views: '',
-    });
+    }
+
+
+    
+    const [video, setVideos] = useState({initialState});
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga
         e.preventDefault();
         addVideos(video); // PROP name aur video ka data pass karenge app.js mein
-
+        setVideos(initialState);
     }
 
     function handleChange(e) {
