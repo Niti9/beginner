@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import './AddVideo.css'
-import video from './video.js';
 
-function AddVideo() {
+function AddVideo({addVideos}) {
 
     const [video, setVideos] = useState({
         time: '1 month ago',
         channel: 'Coder Dost',
-        verified: true
+        verified: true,
     });
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        //is se form ya phir page reload nahi hoga
+        e.preventDefault();
+        addVideos(video); // PROP name aur video ka data pass karenge app.js mein
+        console.log(video);
+        //ab show hoga ki video ke data mein title aur views add hua hai ya nahi
+        //waise add to ho gayi hai details
 
     }
 
@@ -29,10 +34,6 @@ function AddVideo() {
             [e.target.name]: e.target.value
 
         })
-        // console.log(videos) karne par data next render mein dikhta rahega
-        //jaise agar title:"abc" likha hai to title le lega input pura 
-        //lekin record aur compelete data ke saath sirf title:"ab" hi show hoga
-        console.log(video);
 
     }
 
@@ -44,28 +45,14 @@ function AddVideo() {
             <input type="text"
                 name='title'
                 onChange={handleChange}
-                placeholder='title' 
-                /> {video.title} 
-                {/*video.title se ye correct data dikhayega jaise abc diya hai to abc hi show hoga  */}
+                placeholder='title' />
 
-            <input type="text" name='views' onChange={handleChange} placeholder='views' />{video.views}
+            <input type="text"
+                name='views'
+                onChange={handleChange}
+                placeholder='views' />
 
-            <button
-                // new onclick function
-                onClick={handleSubmit}
-
-            // onClick={() => {
-            // //here we setVideos (setter) by copy of videos (using spread Operator) 
-            // setVideos([...videos, {
-            //     id: videos.length + 1,
-            //     title: 'Demo Js Tutorial',
-            //     name: '1M',
-
-            // }
-            // ]);
-            // }}
-            >
-                Add Video </button>
+            <button onClick={handleSubmit} > Add Video </button>
 
         </form>
     )

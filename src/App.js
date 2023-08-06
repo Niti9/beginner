@@ -9,11 +9,33 @@ function App() {
   console.log('render App');
   const [videos, setVideos] = useState(videoDB);
 
+
+  //to get data from AddVideo.js with parameter video
+  function addVideos(video) {
+    setVideos([
+      ...videos,
+      // video // ye humein  Addvideo.js se milega saara data 
+      // but humaare pass video ki id nahi hai isliye hum yahan define karenge
+      //or 
+      {
+        ...video,
+        id: videos.length + 1
+      }
+      //isse humein video mein id bhi mil jaayegi puraani videos mein
+       // ek length jyaada milega
+    ]);
+
+  }
+
+
   return (
 
 
     <div className='App' onClick={() => console.log('App')}>
-      <AddVideo></AddVideo>
+
+      {/* Ye humein AddVideo.js se milega
+      yahan PROP ka name aur FUNCTION ka name diya hai */}
+      <AddVideo addVideos = {addVideos} ></AddVideo>
       {
         videos.map(video =>
           <Video
