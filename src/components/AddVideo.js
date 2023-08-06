@@ -1,27 +1,29 @@
 import { useState } from 'react';
 import './AddVideo.css'
 
-function AddVideo({addVideos}) {
+function AddVideo({ addVideos }) {
 
+    /**  yahan title aur views uncontrolled 
+     * means undefined rahenge jab tak
+     *  hum unhe controlled nahi kar lenge
+     *  uske liye hum title aur views mein '  ' space dekar 
+     * unhe null karenge */
     const [video, setVideos] = useState({
         time: '1 month ago',
         channel: 'Coder Dost',
         verified: true,
+        title: '',
+        views: '',
     });
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga
         e.preventDefault();
         addVideos(video); // PROP name aur video ka data pass karenge app.js mein
-        console.log(video);
-        //ab show hoga ki video ke data mein title aur views add hua hai ya nahi
-        //waise add to ho gayi hai details
 
     }
 
     function handleChange(e) {
-        // view or target with the value show honge console mein
-        console.log(e.target.name, e.target.value); // output: title : "titleName"
 
         //Yahan setVideos mein spread operator waala video 
         //use state mein jo data diya hai usse waise hi lega
