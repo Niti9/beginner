@@ -13,17 +13,22 @@ function App() {
   function addVideos(video) {
     setVideos([
       ...videos,
-      // video // ye humein  Addvideo.js se milega saara data 
-      // but humaare pass video ki id nahi hai isliye hum yahan define karenge
-      //or 
-      {
-        ...video,
-        id: videos.length + 1
-      }
-      //isse humein video mein id bhi mil jaayegi puraani videos mein
-       // ek length jyaada milega
+      { ...video, id: videos.length + 1 }
     ]);
 
+  }
+  //to make delete video function
+  function deleteVideo(id) {
+    setVideos(
+    //high order function by filter method
+    //isse filter ho jaayega data means ab copy change hogi na ki original state
+    // => is a iterator yahan jis bhi video.id match nahi hogi 
+    //wo save ho jaayega baaki delete ho jaayenge means humaari click ki
+    //hui video hi delete hogi
+    videos.filter(video=>video.id!==id)
+    )
+    // we check that function is working  and in console we see the id of video by click the cross button
+    console.log(id)
   }
 
 
@@ -31,12 +36,12 @@ function App() {
 
 
     <div className='App' onClick={() => console.log('App')}>
-      <AddVideo addVideos = {addVideos} ></AddVideo>
-      <VideoList videos={videos}></VideoList> 
+      <AddVideo addVideos={addVideos} ></AddVideo>
+      <VideoList deleteVideo={deleteVideo} videos={videos}></VideoList>
       {/* using prop for add video and get data 
       videolist.js */}
 
-      
+
     </div>
   );
 }

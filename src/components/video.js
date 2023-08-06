@@ -1,11 +1,16 @@
 import './video.css';
 
 //also children prop help to take "nested props"  
-function Video({ id, title, channel = "CODER_DOST", views, time, verified, children }) {
+function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, deleteVideo }) {
 
     return (
         <>
             <div className='container'>
+                {/* add button to remove any video */}
+                <button
+                    /* call deleteVideo and add id with it */
+                    className='close' onClick={() => deleteVideo(id)}>X
+                </button>
                 <div className='pic' >
                     {/*Using temperal literal or backtick to use id as prop in dynamic way */}
                     <img src={`https://picsum.photos/id/${id}/5000/3333`} alt="Katherine Johnson" />
