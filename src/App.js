@@ -1,9 +1,8 @@
-import Video from './components/video.js'
 import './App.css';
 import videoDB from './data/data.js';
-import PlayButton from './components/PlayButton.js'
 import { useState } from 'react';
 import AddVideo from './components/AddVideo.js';
+import VideoList from './components/VideoList';
 function App() {
 
   console.log('render App');
@@ -32,29 +31,12 @@ function App() {
 
 
     <div className='App' onClick={() => console.log('App')}>
-
-      {/* Ye humein AddVideo.js se milega
-      yahan PROP ka name aur FUNCTION ka name diya hai */}
       <AddVideo addVideos = {addVideos} ></AddVideo>
-      {
-        videos.map(video =>
-          <Video
-            key={video.id} // this is unique means to remove consol error of ' unique key  prop'
-            title={video.title}
-            views={video.views}
-            time={video.time}
-            channel={video.channel}
-            verified={video.verified}
-            id={video.id}
-          >
-            <PlayButton
-              onPlay={() => console.log('Playing..', video.title)}
-              onPause={() => console.log('Paused..', video.title)}
-            >
-              {video.title}
-            </PlayButton>
-          </Video>)
-      }
+      <VideoList videos={videos}></VideoList> 
+      {/* using prop for add video and get data 
+      videolist.js */}
+
+      
     </div>
   );
 }
