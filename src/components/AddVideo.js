@@ -12,14 +12,22 @@ const initialState = {
     views: '',
 }
 
-function AddVideo({ addVideos, editableVideo }) {
+function AddVideo({ addVideos,updateVideo, editableVideo }) {
 
     const [video, setVideos] = useState({ initialState });
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga
         e.preventDefault();
-        addVideos(video); // PROP name aur video ka data pass karenge app.js mein
+
+        // to update video or replace content of stored video
+        if (editableVideo) {
+            updateVideo(video); // PROP name aur video ka data pass karenge app.js mein
+        }
+        // to add new video
+        else {
+            addVideos(video);
+        }
         setVideos(initialState);
     }
 
