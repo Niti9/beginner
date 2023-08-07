@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function PlayButton({children,onPlay, onPause  }) {
 
-    console.log('render PlayCounter to check re-rendering')
+    // console.log('render PlayCounter to check re-rendering')
     const[playing, setPlaying] =  useState(false);  
     function handleClick(e) {
 

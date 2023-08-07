@@ -1,23 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './AddVideo.css'
 
-function AddVideo({ addVideos }) {
+/** creating variable isse jab hum new video add karenge
+ * to jo title aur views add karne waale column hai wo khaali 
+ * ho jaayenge kyunki useState(initialState) mein chala jaayega*/
+const initialState = {
+    time: '1 month ago',
+    channel: 'Coder Dost',
+    verified: true,
+    title: '',
+    views: '',
+}
 
+function AddVideo({ addVideos, editableVideo }) {
 
-    /** creating variable isse jab hum new video add karenge
-     * to jo title aur views add karne waale column hai wo khaali 
-     * ho jaayenge kyunki useState(initialState) mein chala jaayega*/
-    const initialState = {
-        time: '1 month ago',
-        channel: 'Coder Dost',
-        verified: true,
-        title: '',
-        views: '',
-    }
-
-
-    
-    const [video, setVideos] = useState({initialState});
+    const [video, setVideos] = useState({ initialState });
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga
@@ -37,11 +34,22 @@ function AddVideo({ addVideos }) {
             //name pehle evaluate hoga phir key banega aur saamne 
             //waali value banegi
             [e.target.name]: e.target.value
-
         })
 
     }
 
+    /** useEffect use when we want to 
+     * mount or Render component first time
+     * yahan [] array dena jaruri hai warna ye infinite chalta rahega
+     [] ismein dependency array dena padta hai
+    */
+    useEffect(() => {
+        //to remove null aur agar kuch value hogi tabhi setVideo mein set hoga
+        if (editableVideo) {
+            setVideos(editableVideo);
+        }
+    }, [editableVideo])
+    /** jab editable video mei change hoga tab useEffect chalega*/
 
 
     return (
@@ -50,14 +58,23 @@ function AddVideo({ addVideos }) {
             <input type="text"
                 name='title'
                 onChange={handleChange}
-                placeholder='title' />
+                placeholder='title'
+                value={video.title} />
 
             <input type="text"
                 name='views'
                 onChange={handleChange}
-                placeholder='views' />
+                placeholder='views'
+                value={video.views} />
 
-            <button onClick={handleSubmit} > Add Video </button>
+            <button onClick={handleSubmit} >
+                {/* ab kaam kar rha hai lekin uncontolled 
+                input to be controlled error console mei show ho rha hai  */}
+                {/* hum button ka name change karenge
+            j   ab editableVideo null rahega tab Add show hoga 
+                warna Edit */}
+                {editableVideo ? 'Edit' : 'Add'} Video
+            </button>
 
         </form>
     )

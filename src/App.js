@@ -7,6 +7,7 @@ function App() {
 
   console.log('render App');
   const [videos, setVideos] = useState(videoDB);
+  const [editableVideo, setEditableVideo] = useState(null);
 
 
   //to get data from AddVideo.js with parameter video
@@ -19,16 +20,12 @@ function App() {
   }
   //to make delete video function
   function deleteVideo(id) {
-    setVideos(
-    //high order function by filter method
-    //isse filter ho jaayega data means ab copy change hogi na ki original state
-    // => is a iterator yahan jis bhi video.id match nahi hogi 
-    //wo save ho jaayega baaki delete ho jaayenge means humaari click ki
-    //hui video hi delete hogi
-    videos.filter(video=>video.id!==id)
-    )
-    // we check that function is working  and in console we see the id of video by click the cross button
-    console.log(id)
+    setVideos(videos.filter(video=>video.id!==id))
+  }
+  //to make edit function
+  function editVideo(id) {
+    const editing = videos.find(video=>video.id===id)
+    setEditableVideo(editing);
   }
 
 
@@ -36,8 +33,8 @@ function App() {
 
 
     <div className='App' onClick={() => console.log('App')}>
-      <AddVideo addVideos={addVideos} ></AddVideo>
-      <VideoList deleteVideo={deleteVideo} videos={videos}></VideoList>
+      <AddVideo addVideos={addVideos} editableVideo={editableVideo} ></AddVideo>
+      <VideoList deleteVideo={deleteVideo} editVideo={editVideo} videos={videos}></VideoList>
       {/* using prop for add video and get data 
       videolist.js */}
 
