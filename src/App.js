@@ -27,7 +27,14 @@ function App() {
           //ab ye niche video ki jagah action.payload lenge
           { ...action.payload, id: videos.length + 1 }
         ]
+      case 'DELETE':
+        return videos.filter(video => video.id !== action.payload)
 
+      case 'UPDATE':
+        const index = videos.findIndex(v => v.id === action.payload.id)
+        const newVideos = [...videos]
+        newVideos.splice(index, 1, action.payload)
+        return newVideos;
 
       default:
         return videos // atleast 
@@ -58,8 +65,9 @@ function App() {
     // ]);
 
   }
-  //to make delete video function
+  //to make delete video function using useReducer
   function deleteVideo(id) {
+    dispatch({ type: 'DELETE', payload: id })
     // setVideos(videos.filter(video => video.id !== id))
   }
   //to make edit function
@@ -69,16 +77,17 @@ function App() {
   }
   //to make update video function
   function updateVideo(video) {
-    /**now we use splice to update video 
-    iska format hoga (index jo change karni hai , 1 element, video )
-    ye splice original state ko change karta hai isliye hum spread operator 
-    ki help se copy banakar usmein change karenge*/
-    const index = videos.findIndex(v => v.id === video.id) //agar variable v ki id 
-    // click karne par kisi video se match hogi to uska index humein mil jaayega
-    const newVideos = [...videos]
-    newVideos.splice(index, 1, video)
+    // /**now we use splice to update video 
+    // iska format hoga (index jo change karni hai , 1 element, video )
+    // ye splice original state ko change karta hai isliye hum spread operator 
+    // ki help se copy banakar usmein change karenge*/
+    // const index = videos.findIndex(v => v.id === video.id) //agar variable v ki id 
+    // // click karne par kisi video se match hogi to uska index humein mil jaayega
+    // const newVideos = [...videos]
+    // newVideos.splice(index, 1, video)
 
     // setVideos(newVideos);
+    dispatch({ type: 'UPDATE', payload: video})
   }
 
 
