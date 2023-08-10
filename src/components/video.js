@@ -1,7 +1,7 @@
 import './video.css';
 
 //also children prop help to take "nested props"  
-function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, deleteVideo,editVideo}) {
+function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, dispatch ,editVideo}) {
 
     return (
         <>
@@ -9,7 +9,7 @@ function Video({ id, title, channel = "CODER_DOST", views, time, verified, child
                 {/* add button to remove any video */}
                 <button
                     /* call deleteVideo and add id with it */
-                    className='close' onClick={() => deleteVideo(id)}>X
+                    className='close' onClick={() =>  dispatch({ type: 'DELETE', payload: id })}>X
                 </button>
                 <button
                     /* call editVideo and add id with it */

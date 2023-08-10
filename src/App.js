@@ -7,6 +7,11 @@ function App() {
 
   console.log('render App');
 
+
+  //define state of editable video upper so it can use
+  const [editableVideo, setEditableVideo] = useState(null);
+
+
   /**useReducer ki help se hum 
    * add video function run kar lenge 
    * by using dispatch aur setVideos 
@@ -14,10 +19,6 @@ function App() {
    * sab kuch comment karenge warna error
    *  show hota rahega
 */
-
-
-
-
 
   function videoReducer(videos, action) {
     switch (action.type) {
@@ -34,6 +35,20 @@ function App() {
         const index = videos.findIndex(v => v.id === action.payload.id)
         const newVideos = [...videos]
         newVideos.splice(index, 1, action.payload)
+
+        /** abhi agar hum kisi video ko update karenge 
+         * to wo normally update ho jaayega lekin
+         * jo add video button edit video mein change hua 
+         * hai usse agar khaali rehte hue click karenge 
+         * to agle video ki details empty ho jaayegi 
+         * aur agar title aur video apni marzi se denge tab
+         * bhi aakhri video ki details hi change hogi
+         * 
+         * humein waapas editable video ki state change karni hogi 
+         * taaki wo edit video karne ke baad automatically add 
+         * video button functionallity show kare
+         */
+        setEditableVideo(null);
         return newVideos;
 
       default:
@@ -49,45 +64,12 @@ function App() {
   const [videos, dispatch] = useReducer(videoReducer, videoDB);
 
   // const [videos, setVideos] = useState(videoDB);
-  const [editableVideo, setEditableVideo] = useState(null);
 
 
-  function addVideos(video) {
-
-    // Yahan bhi action lagega with type and payload
-    //action: {type:'ADD', payload: video}
-    dispatch({ type: 'ADD', payload: video })
-
-    /** ab isse reducer mein hi use karenge */
-    // setVideos([
-    //   ...videos,
-    //   { ...video, id: videos.length + 1 }
-    // ]);
-
-  }
-  //to make delete video function using useReducer
-  function deleteVideo(id) {
-    dispatch({ type: 'DELETE', payload: id })
-    // setVideos(videos.filter(video => video.id !== id))
-  }
   //to make edit function
   function editVideo(id) {
     const editing = videos.find(video => video.id === id)
     setEditableVideo(editing);
-  }
-  //to make update video function
-  function updateVideo(video) {
-    // /**now we use splice to update video 
-    // iska format hoga (index jo change karni hai , 1 element, video )
-    // ye splice original state ko change karta hai isliye hum spread operator 
-    // ki help se copy banakar usmein change karenge*/
-    // const index = videos.findIndex(v => v.id === video.id) //agar variable v ki id 
-    // // click karne par kisi video se match hogi to uska index humein mil jaayega
-    // const newVideos = [...videos]
-    // newVideos.splice(index, 1, video)
-
-    // setVideos(newVideos);
-    dispatch({ type: 'UPDATE', payload: video})
   }
 
 
@@ -95,12 +77,18 @@ function App() {
 
 
     <div className='App' onClick={() => console.log('App')}>
+
+      {/* remove extra unwanted props
+       and use only dispatch keyword as prop
+       and write or use their functionalities
+        in different file */}
+        {/* yahan par bhi addVideo and updateVideo prop hat gaya */}
       <AddVideo
-        addVideos={addVideos}
+        dispatch={dispatch}
         editableVideo={editableVideo}
-        updateVideo={updateVideo} >
+         >
       </AddVideo>
-      <VideoList deleteVideo={deleteVideo} editVideo={editVideo} videos={videos}></VideoList>
+      <VideoList dispatch ={dispatch} editVideo={editVideo} videos={videos}></VideoList>
       {/* using prop for add video and get data 
       videolist.js */}
 

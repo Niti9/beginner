@@ -12,7 +12,8 @@ const initialState = {
     views: '',
 }
 
-function AddVideo({ addVideos,updateVideo, editableVideo }) {
+// taking dispatch as prop
+function AddVideo({ dispatch,addVideos,updateVideo, editableVideo }) {
 
     const [video, setVideos] = useState({ initialState });
 
@@ -22,11 +23,16 @@ function AddVideo({ addVideos,updateVideo, editableVideo }) {
 
         // to update video or replace content of stored video
         if (editableVideo) {
-            updateVideo(video); // PROP name aur video ka data pass karenge app.js mein
+            // updateVideo(video); // PROP name aur video ka data pass karenge app.js mein
+            //or using reducer
+            dispatch({ type: 'UPDATE', payload: video })
         }
         // to add new video
         else {
-            addVideos(video);
+            // addVideos(video);
+            //or 
+            //using reducer
+            dispatch({ type: 'ADD', payload: video })
         }
         setVideos(initialState);
     }

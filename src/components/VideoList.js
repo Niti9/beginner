@@ -2,7 +2,7 @@ import Video from './video.js'
 import PlayButton from './PlayButton.js'
 
 //creating prop in destructred way for passing App.js
-function VideoList({ videos, deleteVideo ,editVideo}) {
+function VideoList({ videos, dispatch ,editVideo}) {
   return (
     /** But ab hum siblings waala funda use karenge 
      * aur data VideoList mein lekar 
@@ -20,8 +20,8 @@ function VideoList({ videos, deleteVideo ,editVideo}) {
             channel={video.channel}
             verified={video.verified}
             id={video.id}
-            deleteVideo={deleteVideo}
             editVideo={editVideo}
+            dispatch = {dispatch}
           >
             <PlayButton
               onPlay={() => console.log('Playing..', video.title)}
