@@ -4,11 +4,6 @@ import PlayButton from './PlayButton.js'
 //creating prop in destructred way for passing App.js
 function VideoList({ videos, dispatch ,editVideo}) {
   return (
-    /** But ab hum siblings waala funda use karenge 
-     * aur data VideoList mein lekar 
-     * AddVideos.js aur Video.js ke saath interact 
-     * karenge phir iss data ko  App.js mein import karenge
-     */
     <>
       {
         videos.map(video =>
