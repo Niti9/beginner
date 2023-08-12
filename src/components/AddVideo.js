@@ -1,6 +1,6 @@
-import { useEffect, useState ,useContext} from 'react';
+import { useEffect, useState} from 'react';
 import './AddVideo.css'
-import VideoDispatchContext from '../Context/VideoDispatchContext';
+import useVideoDispatch from '../Hooks/VideoDispatch';
 
 const initialState = {
     time: '1 month ago',
@@ -14,7 +14,11 @@ const initialState = {
 function AddVideo({ addVideos,updateVideo, editableVideo }) {
 
     const [video, setVideos] = useState({ initialState });
-    const dispatch = useContext(VideoDispatchContext);
+
+    //Now here we use custom hook in replace of the dispatch
+    // const dispatch = useContext(VideoDispatchContext);
+    //Here we use that function of custom hook
+    const dispatch = useVideoDispatch();
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga

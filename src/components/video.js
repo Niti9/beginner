@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import './video.css';
 import ThemeContext from '../Context/ThemeContext';
-import VideoDispatchContext from '../Context/VideoDispatchContext';
+import useVideoDispatch from '../Hooks/VideoDispatch';
 
 //also children prop help to take "nested props"  
 //remove dispatch prop 
 function Video({ id, title, channel = "CODER_DOST", views, time, verified, children,editVideo}) {
 const theme = useContext(ThemeContext)
 
-//import VideoDispatchContext 
-const dispatch = useContext(VideoDispatchContext);
+//Now we use custom hooks in replacement of normal context
+const dispatch = useVideoDispatch();
     return (
         <>
             <div className={`container ${theme}`}>

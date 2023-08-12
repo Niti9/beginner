@@ -1,14 +1,13 @@
 import Video from './video.js'
 import PlayButton from './PlayButton.js'
-import {useContext} from 'react';
-import VideoContext  from '../Context/VideoContext.js';
+import useVideos from '../Hooks/Videos.js';
 //creating prop in destructred way for passing App.js
 //remove videos from prop because now it will come from videoContext
-function VideoList({ dispatch ,editVideo}) {
+function VideoList({ editVideo}) {
 
   // videos apne aap chalegi browser mein
   // here useContext of videosContext
-  const videos = useContext(VideoContext);
+  const videos = useVideos();
   
   return (
     <>
