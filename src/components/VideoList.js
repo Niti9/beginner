@@ -1,8 +1,15 @@
 import Video from './video.js'
 import PlayButton from './PlayButton.js'
-
+import {useContext} from 'react';
+import VideoContext  from '../Context/VideoContext.js';
 //creating prop in destructred way for passing App.js
-function VideoList({ videos, dispatch ,editVideo}) {
+//remove videos from prop because now it will come from videoContext
+function VideoList({ dispatch ,editVideo}) {
+
+  // videos apne aap chalegi browser mein
+  // here useContext of videosContext
+  const videos = useContext(VideoContext);
+  
   return (
     <>
       {
@@ -16,7 +23,9 @@ function VideoList({ videos, dispatch ,editVideo}) {
             verified={video.verified}
             id={video.id}
             editVideo={editVideo}
-            dispatch = {dispatch}
+            // remove dispatch from here because now it comes
+            // from VideoDispatchContext.js
+            // dispatch = {dispatch}
           >
             <PlayButton
               onPlay={() => console.log('Playing..', video.title)}

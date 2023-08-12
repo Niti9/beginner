@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useContext} from 'react';
 import './AddVideo.css'
+import VideoDispatchContext from '../Context/VideoDispatchContext';
 
 const initialState = {
     time: '1 month ago',
@@ -10,9 +11,10 @@ const initialState = {
 }
 
 // taking dispatch as prop
-function AddVideo({ dispatch,addVideos,updateVideo, editableVideo }) {
+function AddVideo({ addVideos,updateVideo, editableVideo }) {
 
     const [video, setVideos] = useState({ initialState });
+    const dispatch = useContext(VideoDispatchContext);
 
     function handleSubmit(e) {
         //is se form ya phir page reload nahi hoga

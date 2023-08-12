@@ -1,10 +1,15 @@
 import { useContext } from 'react';
 import './video.css';
 import ThemeContext from '../Context/ThemeContext';
+import VideoDispatchContext from '../Context/VideoDispatchContext';
 
 //also children prop help to take "nested props"  
-function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, dispatch ,editVideo}) {
+//remove dispatch prop 
+function Video({ id, title, channel = "CODER_DOST", views, time, verified, children,editVideo}) {
 const theme = useContext(ThemeContext)
+
+//import VideoDispatchContext 
+const dispatch = useContext(VideoDispatchContext);
     return (
         <>
             <div className={`container ${theme}`}>
