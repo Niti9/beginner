@@ -13,3 +13,7 @@ form{
     padding: 1em;
     margin-bottom:10px;
 }
+.button{
+    background-color: black;
+    color:#ccc;
+}

@@ -1,11 +1,13 @@
+import { useContext } from 'react';
 import './video.css';
+import ThemeContext from '../Context/ThemeContext';
 
 //also children prop help to take "nested props"  
 function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, dispatch ,editVideo}) {
-
+const theme = useContext(ThemeContext)
     return (
         <>
-            <div className='container'>
+            <div className={`container ${theme}`}>
                 {/* add button to remove any video */}
                 <button
                     /* call deleteVideo and add id with it */

@@ -1,24 +1,27 @@
+import ThemeContext from '../Context/ThemeContext';
 import './PlayButton.css'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-function PlayButton({children,onPlay, onPause  }) {
+function PlayButton({ children, onPlay, onPause }) {
 
-    // console.log('render PlayCounter to check re-rendering')
-    const[playing, setPlaying] =  useState(false);  
+    //importing theme and using useContext
+    const theme = useContext(ThemeContext)
+
+    const [playing, setPlaying] = useState(false);
     function handleClick(e) {
 
         //event bubbling
         e.stopPropagation(); //isse app likh kar console mein show nahi hoga 
-        if(playing) 
+        if (playing)
             onPause();
-        else 
+        else
             onPlay();
 
         setPlaying(!playing);  //condition to change false into true or play into pause in console
     }
     return (
         // play , pause sign we make ternary operator 
-        <button onClick={handleClick} >{children}: {playing ? '⏸️':'▶️'}</button>
+        <button className={theme} onClick={handleClick} >{children}: {playing ? '⏸️' : '▶️'}</button>
     )
 }
 

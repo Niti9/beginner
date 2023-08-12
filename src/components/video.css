@@ -1,37 +1,45 @@
-
-.container{
-    width:15em;
+.container {
+    width: 15em;
     margin: 0 0.2em;
     float: left;
     position: relative;
 }
 
-.pic img{
-    width:80%;
-}
-
-.title{
-    font-weight: bold;
-    margin-bottom: 1em;
+.container.darkMode {
     color: white;
 }
 
-.channel, .views{
+.container.lightMode {
+    color: black;
+}
+
+.pic img {
+    width: 80%;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 1em;
+    /* color: white; */
+}
+
+.channel,
+.views {
     font-size: small;
-    color: #ccc;
+    /* color: #ccc; */
     margin-bottom: 0.2em;
 }
 
-.views span{
+.views span {
     padding: 0 0.5em;
 }
 
-.close{
+.close {
     position: absolute;
-    left:0;
+    left: 0;
 }
 
-.edit{
+.edit {
     position: absolute;
-    left:140px;
+    left: 140px;
 }
