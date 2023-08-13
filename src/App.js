@@ -6,7 +6,7 @@ import VideoList from './components/VideoList';
 import ThemeContext from './Context/ThemeContext.js';
 import VideoContext from './Context/VideoContext';
 import VideoDispatchContext from './Context/VideoDispatchContext';
-
+import Counter from './components/Couter';
 
 function App() {
 
@@ -64,6 +64,7 @@ function App() {
       <VideoContext.Provider value={videos}>
         <VideoDispatchContext.Provider value={dispatch}>
           <div className={`App ${mode}`} onClick={() => console.log('App')}  >
+            <Counter></Counter>
             <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>Mode</button>
             <AddVideo
               // also removing dispatch which is passing as prop
