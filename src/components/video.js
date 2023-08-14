@@ -6,6 +6,9 @@ import useVideoDispatch from '../Hooks/VideoDispatch';
 //also children prop help to take "nested props"  
 //remove dispatch prop 
 function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, editVideo }) {
+    
+    //to check rendering of videos
+    console.log('render Video',id);
     const theme = useContext(ThemeContext)
 
     //Now we use custom hooks in replacement of normal context

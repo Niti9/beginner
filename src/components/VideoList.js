@@ -10,7 +10,7 @@ import useVideoDispatch from '../Hooks/VideoDispatch.js';
 function VideoList({ editVideo }) {
 
   //using external api here
-  const url = "https://my.api.mockaroo.com/coder_dost.json?key=7cb5ceb0"
+  const url = "https://my.api.mockaroo.com/coder_Dost_Final_Api.json?key=7cb5ceb0"
 
 
   //useState ki jagah hum dispatch or reducer use karenge
@@ -19,39 +19,22 @@ function VideoList({ editVideo }) {
   // videos apne aap chalegi browser mein
   // here useContext of videosContext
   const videos = useVideos();
-  //or
-  // to change all the videos name and data regarding that
 
-  // useState mein videos name se hai lekin wo ek 
-  // copy bana rhe hai videos ki jiski wajah se 
-  // videos delete aur edit nahi ho paa rhe hai 
-  // isliye humein useState use nahi karna chahiye
-  // const [videos, setVideos] = useState([]);
- 
-  //create function to use that api 
-  async function handleClick() {
-    const res = await axios.get(url);
-    console.log(res.data);
 
-    //ab ya to hum har ek video ke liye bhot saare
-    //dispatch as prop banakar use karein 
-    //lekin hum ek naya dispatch banayenge sab videos 
-    //ke liye  aur app.js mein naya case banayenge
-    dispatch({type:'LOAD', payload:res.data});
-    //aur hum ab kisi bhi video ko edit aur delete kar sakte hai
-  }
-
-  /**browser mein videos ki jagah  API ko 
-   *  use kar rhe hai lekin abhi videos 
-   * delete nahi ho rhi hai aur bhi kuch 
-   * functionalities ko sahi karenge 
-   */
-  //lekin ab useEffect ki help se videos load karenge 
-  //aur Get Videos button ki jarurat nahi padegi
-  //ye apne aap first time reload hone par kaam karega
   useEffect(() => {
-    handleClick();
-  }, [])
+    // best way to use that api 
+    //here inside useEffect
+    //ab jab browser par load hoga to ye function 
+    //getVideos() apne aap first reload hoga 
+    //aur dispatch ko humne as dependency diya hai 
+    async function getVideos() {
+      const res = await axios.get(url);
+      console.log(res.data);
+      dispatch({type:'LOAD', payload:res.data});
+    }
+    getVideos();
+
+  }, [dispatch])
 
 
   return (
@@ -79,7 +62,7 @@ function VideoList({ editVideo }) {
             </PlayButton>
           </Video>)
       }
-      <button onClick={handleClick}> Get Videos</button>
+      {/* <button onClick={handleClick}> Get Videos</button> */}
     </>
   )
 }
