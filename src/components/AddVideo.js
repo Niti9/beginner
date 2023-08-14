@@ -59,17 +59,27 @@ function AddVideo({ editableVideo }) {
 
         //or 
 
-        // inputRef.current.focus();
+        //Dom element
+        inputRef.current.focus();
+        //agar hum isse useEffect se bahar rakhenge to wo error dega
+        //lekin iss side Effect(means something out from react) ko 
+        //agar andar rakhenge to wo saare components render hone ke 
+        // baad chalega jo ki safe or pure way hoga 
+        //kyunki har baar useEffect function component render hone ke 
+        //baad kaam karta hai 
+        //agar hum ye dom element bahar rakhenge to wo error dega 
+        //kyunki current mein kuch hoga hi nahi function render
+        //  hone se pehle kaise wo kaam karega
         //isse title waale apne aap cursor chala jaayega
 
         //or 
-        inputRef.current.placeholder = ""
-        //inputRef.current.focus()
-        "type here title".split('').forEach((char,i)=>{
-            setTimeout(()=>{
-                inputRef.current.placeholder = inputRef.current.placeholder + char;
-            },1000 * i);
-        })
+        // inputRef.current.placeholder = ""
+        // //inputRef.current.focus()
+        // "type here title".split('').forEach((char,i)=>{
+        //     setTimeout(()=>{
+        //         inputRef.current.placeholder = inputRef.current.placeholder + char;
+        //     },1000 * i);
+        // })
         //isse title waale box mein animation hoga 
 
     }, [editableVideo])
