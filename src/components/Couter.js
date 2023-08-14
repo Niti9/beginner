@@ -1,4 +1,27 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
+
+//Humne reactive to non reactive element banaya
+//means jab tak function ke andar the useMemo ke liye problem
+//ho rhi thi dependency choose karne mein
+
+//creating fib function for fibonacci series
+function fib(n) {
+    /**  logic last two number add hote rahenge
+     * values =  1,1,2,3,5,8,13,21,34....144,233 ......
+     *  means 0+1 = 1
+     * 1+1 = 2
+     * 2+1=3
+     * 3+2=5
+    */
+
+    if (n === 1 || n === 2) {
+        return 1
+    }
+
+    return fib(n - 1) + fib(n - 2)
+
+}
+
 
 function Counter() {
 
@@ -22,34 +45,29 @@ function Counter() {
         //se value 1 2 3 ...  karke badhegi 
 
     }
-    //creating fib function for fibonacci series
-    function fib(n) {
-        /**  logic last two number add hote rahenge
-         * values =  1,1,2,3,5,8,13,21,34....144,233 ......
-         *  means 0+1 = 1
-         * 1+1 = 2
-         * 2+1=3
-         * 3+2=5
-        */
 
-        if (n === 1 || n === 2) {
-            return 1
-        }
-       
-       return fib(n - 1) + fib(n - 2)
 
-       
-        
-    }
+    //creating a useMemo which will help to load and maintain all
+    //videos edit and delete functionalites
+    //as like stored value and only reload when number dependency 
+    //or number will change 
+    const fibMemoized = useMemo(() =>
+        fib(number) //ye value pehli baar calculate hone ke baad Memory mein store ho jaayegi jo ki easily show ho jaayegi 
+        , [number]
+    )
+    //jab hum useState mein koi nayi aur badi value denge 
+    //to useMemo nayi value ko calculate karege usmein time lega 
+    //lekin next time usse store karke bhot fast show kar dega
+ 
 
     return (
         <>
-        {/* 2nd method useState mein value dedo jaldi 
+            {/* 2nd method useState mein value dedo jaldi 
         browser par koi bhi badi value access ho jaayegi 
         aur agar hum niche {fib(20)}  karke  badi value 
         bhejenge to processor delay hoga means bhot time 
         lagega output show hone mein */}
-            <h1 style={{ color: 'white' }}>{number} | {fib(number)} </h1>
+            <h1 style={{ color: 'white' }}>{number} | {fibMemoized} </h1>
             <button onClick={handleClick}>Add</button>
         </>
     )
