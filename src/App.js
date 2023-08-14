@@ -22,6 +22,17 @@ function App() {
 
   function videoReducer(videos, action) {
     switch (action.type) {
+
+      //ek naya case banayenge api waale videos ko 
+      //load karne ke liye
+      case 'LOAD':
+        //humnein yahan sirf ye diya hai ki videos load honge
+        //aur waise bhi ab API apne aap har ek video ko
+        //load karegi isliye id dene ki jarurat nahi hai 
+        //puraane (Old) videos react,node js,  mongodb Tutorial
+        //waale videos ab load nahi honge
+        return action.payload;
+
       case 'ADD':
         return [
           ...videos,
@@ -44,9 +55,11 @@ function App() {
     }
   }
 
-
+  
   // useReducer(reducerName,initialValue)
-  const [videos, dispatch] = useReducer(videoReducer, videoDB);
+  //ab yahan videoDB se video nahi lenge isliye
+  //videoDB ko ek blank array bana denge
+  const [videos, dispatch] = useReducer(videoReducer, []);
 
   //to make edit function
   function editVideo(id) {
@@ -72,7 +85,7 @@ function App() {
               editableVideo={editableVideo}
             >
             </AddVideo>
-            
+
             <VideoList
               // also removing dispatch which is passing as prop
               // dispatch={dispatch}
