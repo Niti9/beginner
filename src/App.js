@@ -1,6 +1,6 @@
 import './App.css';
 import videoDB from './data/data.js';
-import { useReducer, useState } from 'react';
+import { useReducer, useState,useCallback } from 'react';
 import AddVideo from './components/AddVideo.js';
 import VideoList from './components/VideoList';
 import ThemeContext from './Context/ThemeContext.js';
@@ -62,10 +62,18 @@ function App() {
   const [videos, dispatch] = useReducer(videoReducer, []);
 
   //to make edit function
-  function editVideo(id) {
+  /** ab hum editVideo function ko bhi memoized karenge
+   * kyunki browser par kisi bhi video par click karne se 
+   * console par show ho rha tha ki video re-render ho rha hai
+   * means pur videolist  re-render ho rhi thi
+   */
+  //to hum useCallback se iss function ko memoized kar lenge
+  const editVideo = useCallback(function editVideo(id) {
     const editing = videos.find(video => video.id === id)
     setEditableVideo(editing);
-  }
+  },[videos])//videos iski dependency hai
+
+  //ab edit karne par pur videoList render honge sirf children prop ki wajah se usse ab sahi karte hai
 
 
   return (

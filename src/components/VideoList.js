@@ -2,7 +2,7 @@ import Video from './video.js'
 import PlayButton from './PlayButton.js'
 import useVideos from '../Hooks/Videos.js';
 import axios from 'axios';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect,useMemo } from 'react';
 import useVideoDispatch from '../Hooks/VideoDispatch.js';
 
 //creating prop in destructred way for passing App.js
@@ -47,6 +47,21 @@ function VideoList({ editVideo }) {
   const play = useCallback(() => console.log('Playing..'), [])
   const pause = useCallback(() => console.log('Paused..'), [])
 
+
+/** ab useMemo se iss PlayButton ki return value ko memoized 
+ * karenge phir browser ke videos ke edit par jab hum click 
+ * karenge to console mein re-render nahi hoga means pur
+ *  videoList re-render nahi hogi
+*/
+  const memoButton = useMemo(() => (
+    <PlayButton onPlay={play} onPause={pause}>
+      {/* abhi video.title error show kar rha tha 
+      isliye hum name normally play de denge */}
+      Play
+    </PlayButton>
+  ), []);
+//ab sirf kisi video ko edit karne ke baad hi videoList re-render hongi
+
   return (
     <>
       {
@@ -61,13 +76,7 @@ function VideoList({ editVideo }) {
             id={video.id}
             editVideo={editVideo}
           >
-
-            <PlayButton
-              onPlay={play}
-              onPause={pause}
-            >
-              {video.title}
-            </PlayButton>
+            {memoButton}
           </Video>)
       }
       {/* <button onClick={handleClick}> Get Videos</button> */}

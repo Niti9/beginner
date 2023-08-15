@@ -1,11 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, memo } from 'react';
 import './video.css';
 import ThemeContext from '../Context/ThemeContext';
 import useVideoDispatch from '../Hooks/VideoDispatch';
 
-//also children prop help to take "nested props"  
-//remove dispatch prop 
-function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, editVideo }) {
+//video function bhi baar baar re-render ho rha hai 
+//isliye hum isse bhi memo mein memoized karenge
+
+const Video = memo( function Video({ id, title, channel = "CODER_DOST", views, time, verified, children, editVideo }) {
     
     //to check rendering of videos
     console.log('render Video',id);
@@ -62,6 +63,6 @@ function Video({ id, title, channel = "CODER_DOST", views, time, verified, child
             </div>
         </>
     )
-}
+})
 
 export default Video;
