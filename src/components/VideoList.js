@@ -2,7 +2,7 @@ import Video from './video.js'
 import PlayButton from './PlayButton.js'
 import useVideos from '../Hooks/Videos.js';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import useVideoDispatch from '../Hooks/VideoDispatch.js';
 
 //creating prop in destructred way for passing App.js
@@ -30,12 +30,22 @@ function VideoList({ editVideo }) {
     async function getVideos() {
       const res = await axios.get(url);
       console.log(res.data);
-      dispatch({type:'LOAD', payload:res.data});
+      dispatch({ type: 'LOAD', payload: res.data });
     }
     getVideos();
 
   }, [dispatch])
 
+
+
+  /** Now we will use Hook with memo 
+  memo is used in PlayButton.js and we use useCallback
+  hook to store or memoized onPlay and onPause function */
+  //
+  //Hooks are always use at top level mainly outside the return()
+  // this is useCallback hook
+  const play = useCallback(() => console.log('Playing..'), [])
+  const pause = useCallback(() => console.log('Paused..'), [])
 
   return (
     <>
@@ -50,13 +60,11 @@ function VideoList({ editVideo }) {
             verified={video.verified}
             id={video.id}
             editVideo={editVideo}
-          // remove dispatch from here because now it comes
-          // from VideoDispatchContext.js
-          // dispatch = {dispatch}
           >
+
             <PlayButton
-              onPlay={() => console.log('Playing..', video.title)}
-              onPause={() => console.log('Paused..', video.title)}
+              onPlay={play}
+              onPause={pause}
             >
               {video.title}
             </PlayButton>

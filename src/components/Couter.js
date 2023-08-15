@@ -6,7 +6,7 @@ function Counter() {
 
     console.log("render counter");
     //number is state , and setNumber is like setter 
-    const [number, setNumber] = useState(40);
+    const [number, setNumber] = useState(5);
 
     //Ref is always an object that's 
     //why that value will store in current property of num 
@@ -36,7 +36,7 @@ function Counter() {
      * the help of **useCallback function **
      * useMemo mein number ki return value memoized hoti hai
      */
-     
+
     /** useCallback use to  memoized the function not return value  */
 
     //iss function mein bahar se koi bhi react ke through reactive chiz nahi 
@@ -44,7 +44,7 @@ function Counter() {
     //iss Hook ki ye speciality hai ki ye iss function ka 
     //global declare kiya hua reference uthayenge 
     //dobaara function ko re-declare nahi hone denge
-   const fibFx =  useCallback(function fib(n) {
+    const fibFx = useCallback(function fib(n) {
         /**  logic last two number add hote rahenge
          * values =  1,1,2,3,5,8,13,21,34....144,233 ......
          *  means 0+1 = 1
@@ -52,14 +52,14 @@ function Counter() {
          * 2+1=3
          * 3+2=5
         */
-    
+
         if (n === 1 || n === 2) {
             return 1
         }
-    
+
         return fib(n - 1) + fib(n - 2)
-    
-    },[])
+
+    }, [])
 
 
     /** useMemo memoized the return value of function  */
@@ -69,12 +69,12 @@ function Counter() {
     //or number will change 
     const fibMemoized = useMemo(() =>
         fibFx(number)  //memoized the function // useCallback function used here
-        , [number,fibFx] //and also make it dependency
+        , [number, fibFx] //and also make it dependency
     )
     //jab hum useState mein koi nayi aur badi value denge 
     //to useMemo nayi value ko calculate karege usmein time lega 
     //lekin next time usse store karke bhot fast show kar dega
- 
+
 
     return (
         <>
